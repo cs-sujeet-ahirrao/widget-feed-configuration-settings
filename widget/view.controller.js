@@ -2,9 +2,9 @@
     (function () {
         angular
             .module('cybersponse')
-            .controller('feedConfigurationSettingsDev110DevCtrl', feedConfigurationSettingsDev110DevCtrl);
+            .controller('feedConfigurationSettings110Ctrl', feedConfigurationSettings110Ctrl);
 
-        feedConfigurationSettingsDev110DevCtrl.$inject = ['$scope', 'CommonUtils', '$resource', 'API', 'config', 'statusCodeService', 'toaster', '$rootScope', 'ModalService', 'clipboard'];
+        feedConfigurationSettings110Ctrl.$inject = ['$scope', 'CommonUtils', '$resource', 'API', 'config', 'statusCodeService', 'toaster', '$rootScope', 'ModalService', 'clipboard'];
 
         function feedConfigurationSettingsDev110DevCtrl($scope, CommonUtils, $resource, API, config, statusCodeService, toaster, $rootScope, ModalService, clipboard) {
           $scope.getFeedSettings = getFeedSettings;
