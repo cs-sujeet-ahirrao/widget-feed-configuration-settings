@@ -2,9 +2,9 @@
 (function () {
     angular
         .module('cybersponse')
-        .controller('editFeedConfigurationSettingsDev110DevCtrl', editFeedConfigurationSettingsDev110DevCtrl);
+        .controller('editFeedConfigurationSettings110Ctrl', editFeedConfigurationSettings110Ctrl);
 
-        editFeedConfigurationSettingsDev110DevCtrl.$inject = ['$scope', '$uibModalInstance', 'config', 'appModulesService'];
+        editFeedConfigurationSettings110Ctrl.$inject = ['$scope', '$uibModalInstance', 'config', 'appModulesService'];
 
     function editFeedConfigurationSettingsDev110DevCtrl($scope, $uibModalInstance, config, appModulesService) {
         $scope.cancel = cancel;
