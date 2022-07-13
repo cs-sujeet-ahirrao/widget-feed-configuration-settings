@@ -1,0 +1,23 @@
+{
+    "name": "feedConfigurationSettingsDev",
+    "version": "1.1.0",
+    "title": "Feed Configuration Settings (Dev)",
+    "subTitle": null,
+    "metadata": {
+        "pages": [
+            "Listing"
+        ],
+        "certified": "Yes",
+        "publisher": "Fortinet",
+        "snapshots": [
+            "https:\/\/update.cybersponse.com\/fsr-widgets\/feedConfigurationSettings-1.1.0\/images\/feed-configuration-settings.png",
+            "https:\/\/update.cybersponse.com\/fsr-widgets\/feedConfigurationSettings-1.1.0\/images\/feed-configuration-outgoing-feed-settings-view.png",
+            "https:\/\/update.cybersponse.com\/fsr-widgets\/feedConfigurationSettings-1.1.0\/images\/feed-configuration-feed-to-indicator-linking-view.png"
+        ],
+        "description": "Threat Intel Feed Configuration Settings",
+        "compatibility": [
+            "7.2.0"
+        ]
+    },
+    "development": false
+}
