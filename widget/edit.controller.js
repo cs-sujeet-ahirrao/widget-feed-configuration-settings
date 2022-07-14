@@ -6,7 +6,7 @@
 
         editFeedConfigurationSettings110Ctrl.$inject = ['$scope', '$uibModalInstance', 'config', 'appModulesService'];
 
-    function editFeedConfigurationSettingsDev110DevCtrl($scope, $uibModalInstance, config, appModulesService) {
+    function editFeedConfigurationSettings110Ctrl($scope, $uibModalInstance, config, appModulesService) {
         $scope.cancel = cancel;
         $scope.save = save;
         $scope.config = config;

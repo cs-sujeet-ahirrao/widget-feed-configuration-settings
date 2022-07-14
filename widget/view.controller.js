@@ -6,7 +6,7 @@
 
         feedConfigurationSettings110Ctrl.$inject = ['$scope', 'CommonUtils', '$resource', 'API', 'config', 'statusCodeService', 'toaster', '$rootScope', 'ModalService', 'clipboard'];
 
-        function feedConfigurationSettingsDev110DevCtrl($scope, CommonUtils, $resource, API, config, statusCodeService, toaster, $rootScope, ModalService, clipboard) {
+        function feedConfigurationSettings110Ctrl($scope, CommonUtils, $resource, API, config, statusCodeService, toaster, $rootScope, ModalService, clipboard) {
           $scope.getFeedSettings = getFeedSettings;
           $scope.updateTaxiiServerStatus = updateTaxiiServerStatus;
           $scope.updateGenaralSettings = updateGenaralSettings;
