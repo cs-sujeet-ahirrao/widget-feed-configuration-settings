@@ -12,7 +12,7 @@ Configures feeds to be consumed by modules. An example of using the feed configu
 
 **Compatibility**: 7.2.0 and later  
 
-**Applicable**: View Panel
+**Applicable**: Listing view
 
 ## Feed Configuration Settings Views
 
