@@ -1,0 +1,228 @@
+<!-- Copyright start
+  MIT License
+  Copyright (c) 2024 Fortinet Inc
+  Copyright end -->
+<link rel="stylesheet" type="text/css"
+  href="feedConfigurationSettings-1.1.1/widgetAssets/css/feedConfigurationSettings.css" />
+<div class="widget feed-cofiguration-settings-widget widget-container">
+  <div class="display-flex-space-between">
+    <div class="padding-right-0 padding-left-0 widget-dashboard-title-width"
+      data-ng-class="(page === 'dashboard' || page === 'reporting') ? 'widget-dashboard-title-width' : 'widget-title-width'">
+      <h5 class="margin-top-0 margin-bottom-0 text-overflow ng-binding">{{config.title}}
+      </h5>
+    </div>
+    <div class="padding-right-0 padding-left-0"
+      data-ng-class="(page === 'dashboard' || page === 'reporting') ? 'widget-dashboard-actions-width' : 'widget-actions-width'">
+      <span class="fa btn widget-action-icon btn-sm pull-right" data-ng-click="collapsed = !collapsed"
+        data-ng-class="{'fa-caret-up': !collapsed, 'fa-caret-down': collapsed}"></span>
+    </div>
+  </div>
+  <div class="feed-config-widget {{getTheme}}" data-ng-hide="collapsed">
+    <div class="padding-left-lg padding-bottom-lg">
+      <div class="feed-configuration-container position-relative">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav feed-config-tabs margin-bottom-lg">
+              <li data-ng-repeat="tab in tabsData" data-ng-if="tab.visible"
+                data-ng-class="{'active': tab.active === true }">
+                <a id="debug-tab-{{ tab.name }}" data-ng-click="params.activeTab = tab;getFeedSettings();">{{
+                  tab.title }}</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="outgoing-feed-container" data-ng-if="params.activeTab.name === 'outgoingFeed'" >
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <div class="feed-config-description font-size-12">
+                          <div>You can enable a TAXII Server to create an outgoing feed based on the threat intelligence
+                            you want to share externally.</div>
+                          <div>TAXII clients will be able to subscribe to the collection and receive feeds.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="" data-ng-if="processing">
+        				<cs-spinner data-show-background="true"></cs-spinner>
+      				</div>
+                    <div data-ng-if="!processing" class="margin-top-xlg">
+                      <div class="muted font-size-14">Enable TAXII Server</div>
+                      <div class="clear-both margin-top-lg">
+                        <ng-form name="params.feedOutgoingStatusForm">
+                          <div class="form-group margin-0">
+                            <label for="feedOutgoingStatus"
+                              class="remote-executable-label margin-right-1 pull-left btn no-border">Status</label>
+                            <button type="button"
+                              class="btn btn-sm no-border line-height-15 active btn-success"
+                              data-ng-disabled="updateProcessing" data-ng-class="params.enableTaxiiServer ? 'btn-success' : 'btn-danger'"
+                              data-ng-model="params.enableTaxiiServer" name="enableTaxiiServer" id="enableTaxiiServer"
+                              data-uib-btn-checkbox="">
+                             {{ params.enableTaxiiServer ? 'Enabled' : 'Disabled' }}</button>
+                          </div>
+                        </ng-form>
+                      </div>
+                      <div class="mertics-widget-border-bottom margin-top-sm"></div>
+                    </div>
+                    <div data-ng-if="!processing && params.enableTaxiiServer">
+                      <div class="margin-top-xlg">
+                        <div class="font-size-14">TAXII Server Details</div>
+                      </div>
+                      <div class="margin-top-lg">
+                        <div class="muted font-size-14">Server Address</div>
+                        <div class="font-size-12">{{taxiiServerAddress}}api/taxii/1/</div>
+                      </div>
+                      <div class="margin-top-lg">
+                        <div class="muted font-size-14">Server Discovery Address</div>
+                        <div class="font-size-12">{{taxiiServerAddress}}api/taxii/1/taxii</div>
+                      </div>
+                      <div class="margin-top-lg">
+                        <div class="muted font-size-14">Authentication</div>
+                        <div class="font-size-12">Basic Auth with username and password. You could also use <span class="font-italic">https://&lt;username&gt;:&lt;password&gt;@&lt;server_fqhn&gt;/api/taxii/1 </span></div>
+                      </div>
+                      <div class="margin-top-lg">
+                        <div class="muted font-size-14">Endpoints Available</div>
+                        <ol class="tid-endpoint-list font-size-12">
+                          <li><span class="font-italic">api/taxii/1/collections</span> : To list all available datasets</li>
+                          <li class="font-size-12"><span class="font-italic">api/taxii/1/collections/&lt;datasetId&gt;</span>: Lists details of a dataset</li>
+                          <li><span class="font-italic">api/taxii/1/collections/&lt;datasetId&gt;/objects</span>: List threat feeds in a dataset</li>
+                          <li><span class="font-italic">api/taxii/1/collections/&lt;datasetId&gt;/objects/&lt;objectId&gt;</span>: List details of a specific feed object</li>
+                        </ol>
+                      </div>
+                      <div class="dataset-collections margin-top-xlg">
+                        <div class="muted font-size-14">Available Datasets</div>
+                        <div class="margin-top-sm font-size-12 font-italic">
+                          All datasets of <span class="font-bold">Threat Intel Feeds</span> module will be listed here.<br/>
+                          You can add more Datasets under the <span class="font-bold">Threat Feeds</span> section.
+                        </div>
+                        <div class="font-size-12 margin-top-sm"><span class="muted">Showing {{datasets.length}} records </span><span class="icon icon-refresh btn btn-sm padding-0 padding-left-md margin-left-sm dataset-refresh" data-ng-click="getDataSets();" data-uib-tooltip="Refresh" role="button"></span></div>
+                        <div class="dataset-collections-container margin-top-sm">
+                          <div class="row">
+                            <div class="col-md-9">
+                              <table class="table font-size-12">
+                                <tr class="head">
+                                  <th width="50%">Dataset Name</th>
+                                  <th width="30%">ID</th>
+                                  <th width="20%">URL</th>
+                                </tr>
+                                <tr class="body" data-ng-if="datasets.length > 0" data-ng-repeat="dataset in datasets">
+                                  <td width="50%">{{dataset.name}}</td>
+                                  <td width="30%">{{dataset.uuid}}&nbsp;</td>
+                                  <td width="20%">
+                                    <div>
+                                     <div class="display-inline-block text-center" data-ng-click="copyDatasetLink(dataset.uuid,'taxii')" data-uib-tooltip="Copy URL for JSON formatted dataset feed">
+                                       <div class="active-color icon icon-iframe" 
+              data-tooltip-append-to-body="true"></div> 
+                                       <div class="active-color font-07em">
+                                       JSON
+                                       </div>
+                                    </div>
+                                    <div class="display-inline-block text-center margin-left-15" data-ng-click="copyDatasetLink(dataset.uuid,'csv')" data-uib-tooltip="Copy URL for CSV formatted dataset feed">
+                                  <div class="active-color icon icon-grid-list" 
+              data-tooltip-append-to-body="true"></div> 
+                                      <div class="active-color font-07em">
+                                        CSV
+                                      </div>
+                                    </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr class="body" data-ng-if="!datasetProcessing && datasets.length === 0">
+                                  <td colspan="2" class="muted font-size-12 text-center">No datasets found.</td>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div data-ng-if="params.activeTab.name === 'general'">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="margin-top-lg">
+                      <div class="font-size-16"> Feed To Indicator Linking</div>
+                      <span class="font-size-12 muted font-italic">Select feed confidence threshold for automatically
+                        updating matching indicator record reputation</span>
+                    </div>
+                    <div data-ng-if="processing">
+        				<cs-spinner data-show-background="true"></cs-spinner>
+      				</div>
+                    <ng-form data-ng-if="!processing" name="params.feedIndicatorLinking">
+                      <div class="margin-top-xlg">
+                        <div class="muted font-size-14">Enable Feed To Indicator Linking</div>
+                        <div class="clear-both margin-top-lg">
+                          <div class="form-group margin-0">
+                            <label for="feedIndicatorLinkingStatus"
+                              class="remote-executable-label margin-right-1 pull-left">Status</label>
+                            <button type="button"
+                              class="btn btn-sm no-border line-height-15 active btn-success"
+                              data-ng-disabled="updateProcessing" data-ng-class="params.enableFeedIndicatorLinking ? 'btn-success' : 'btn-danger'"
+                              data-ng-model="params.enableFeedIndicatorLinking" name="feedIndicatorLinkingStatus"
+                              id="feedIndicatorLinkingStatus" data-uib-btn-checkbox="">{{
+                              params.enableFeedIndicatorLinking ? 'Enabled' : 'Disabled' }}</button>
+                          </div>
+                        </div>
+                        <div class="mertics-widget-border-bottom margin-top-sm"></div>
+                      </div>
+                      <div data-ng-if="!processing && params.enableFeedIndicatorLinking"
+                        class="feed-general-settings padding-left-lg margin-top-lg">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="form-group"
+                              data-ng-class="{ 'has-error': feedIndicatorLinking.feedConfidenceThreshold.$invalid && feedIndicatorLinking.feedConfidenceThreshold.$touched }">
+                              <label for="feedConfidenceThreshold" class="control-label">Select Feed Confidence
+                                Threshold<span class="text-danger"></span>
+                              </label>
+                              <input data-ng-disabled="updateProcessing" id="feedConfidenceThreshold" name="feedConfidenceThreshold" type="number" min="0"
+                                step="1" max="100" class="form-control" data-ng-model="params.feedConfidenceThreshold"
+                                required>
+                              <div data-cs-messages="feedIndicatorLinking.feedConfidenceThreshold">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="font-size-12 muted font-italic padding-bottom-md">The reputation of an indicator
+                              for which there is a matching feed found, will automatically be updated with the feed's
+                              reputation, given the feed confidence is equal or above this provided value.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="general-settings-footer">
+              <div class="row">
+                <div data-ng-if="params.activeTab.name === 'outgoingFeed'" class="col-md-12 text-left">
+                  <button type="button" class="btn btn-sm btn-primary margin-right-negative-2 padding-right-lg"
+                    data-ng-click="updateTaxiiServerStatus()" title="Update outgoing feed settings" id="update-taxii-server-btn"
+                    data-ng-disabled="processing || updateProcessing || !params.feedOutgoingStatusForm.$dirty"><i
+                      class="icon icon-check margin-right-sm"></i>Save</button>
+                  <button type="button" class="btn btn-sm btn-default margin-right-negative-2 padding-right-lg"
+                    id="revert-taxii-server-btn" data-ng-disabled="processing || updateProcessing || !params.feedOutgoingStatusForm.$dirty" title="Revert Changes"
+                    data-ng-click="revertTaxiiServerStatus()"><i
+                      class="icon icon-revert margin-right-sm"></i>Revert</button>
+                </div>
+                <div data-ng-if="params.activeTab.name === 'general'" class="col-md-12 text-left">
+                  <button type="button" class="btn btn-sm btn-primary margin-right-negative-2 padding-right-lg"
+                    data-ng-click="updateGenaralSettings()" title="Update Feed Confidence Threshold"
+                    id="save-feed-confidence-threshold-btn" data-ng-disabled="processing || updateProcessing || !params.feedIndicatorLinking.$dirty"><i
+                      class="icon icon-check margin-right-sm"></i>Save</button>
+                  <button type="button" class="btn btn-sm btn-default margin-right-negative-2 padding-right-lg"
+                    id="revert-feed-confidence-threshold-btn" data-ng-disabled="processing || updateProcessing || !params.feedIndicatorLinking.$dirty" title="Revert Changes"
+                    data-ng-click="revertFeedConfidenceSettings()"><i
+                      class="icon icon-revert margin-right-sm"></i>Revert</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
