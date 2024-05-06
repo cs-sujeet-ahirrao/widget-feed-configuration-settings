@@ -11,9 +11,9 @@
         "certified": "Yes",
         "publisher": "Fortinet",
         "snapshots": [
-            "https://repo.fortisoar.fortinet.com/fsr-widgets/feedConfigurationSettings-1.1.0/images/feed-configuration-settings.png",
-            "https://repo.fortisoar.fortinet.com/fsr-widgets/feedConfigurationSettings-1.1.0/images/feed-configuration-outgoing-feed-settings-view.png",
-            "https://repo.fortisoar.fortinet.com/fsr-widgets/feedConfigurationSettings-1.1.0/images/feed-configuration-feed-to-indicator-linking-view.png"
+            "https://repo.fortisoar.fortinet.com/fsr-widgets/feedConfigurationSettings-1.1.1/images/feed-configuration-settings.png",
+            "https://repo.fortisoar.fortinet.com/fsr-widgets/feedConfigurationSettings-1.1.1/images/feed-configuration-outgoing-feed-settings-view.png",
+            "https://repo.fortisoar.fortinet.com/fsr-widgets/feedConfigurationSettings-1.1.1/images/feed-configuration-feed-to-indicator-linking-view.png"
         ],
         "description": "Threat Intel Feed Configuration Settings",
         "help_online":"https://github.com/fortinet-fortisoar/widget-feed-configuration-settings/blob/release/1.1.0/README.md",
