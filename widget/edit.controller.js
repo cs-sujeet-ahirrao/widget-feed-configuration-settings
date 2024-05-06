@@ -1,12 +1,16 @@
+/* Copyright start
+  MIT License
+  Copyright (c) 2024 Fortinet Inc
+  Copyright end */
 'use strict';
 (function () {
     angular
         .module('cybersponse')
-        .controller('editFeedConfigurationSettings110Ctrl', editFeedConfigurationSettings110Ctrl);
+        .controller('editFeedConfigurationSettings111Ctrl', editFeedConfigurationSettings111Ctrl);
 
-        editFeedConfigurationSettings110Ctrl.$inject = ['$scope', '$uibModalInstance', 'config', 'appModulesService'];
+        editFeedConfigurationSettings111Ctrl.$inject = ['$scope', '$uibModalInstance', 'config', 'appModulesService'];
 
-    function editFeedConfigurationSettings110Ctrl($scope, $uibModalInstance, config, appModulesService) {
+    function editFeedConfigurationSettings111Ctrl($scope, $uibModalInstance, config, appModulesService) {
         $scope.cancel = cancel;
         $scope.save = save;
         $scope.config = config;
