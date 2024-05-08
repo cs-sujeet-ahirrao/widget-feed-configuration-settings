@@ -114,7 +114,7 @@ ul.feed-config-tabs {
   background:#000000;
 }
 
-.tid-endpoint-list{
+.tid-endpoint-list, .tid-authentication-list{
   list-style-type: lower-alpha;
   padding-left: 15px;
 }
