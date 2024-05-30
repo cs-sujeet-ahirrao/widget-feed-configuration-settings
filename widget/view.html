@@ -1,5 +1,9 @@
+<!-- Copyright start
+  MIT License
+  Copyright (c) 2024 Fortinet Inc
+  Copyright end -->
 <link rel="stylesheet" type="text/css"
-  href="feedConfigurationSettings-1.1.0/widgetAssets/css/feedConfigurationSettings.css" />
+  href="feedConfigurationSettings-1.1.1/widgetAssets/css/feedConfigurationSettings.css" />
 <div class="widget feed-cofiguration-settings-widget widget-container">
   <div class="display-flex-space-between">
     <div class="padding-right-0 padding-left-0 widget-dashboard-title-width"
@@ -68,8 +72,15 @@
                         <div class="font-size-12">{{taxiiServerAddress}}api/taxii/1/</div>
                       </div>
                       <div class="margin-top-lg">
+                        <div class="muted font-size-14">Server Discovery Address</div>
+                        <div class="font-size-12">{{taxiiServerAddress}}api/taxii/1/taxii</div>
+                      </div>
+                      <div class="margin-top-lg">
                         <div class="muted font-size-14">Authentication</div>
-                        <div class="font-size-12">Basic Auth with username and password. You could also use <span class="font-italic">https://&lt;username&gt;:&lt;password&gt;@&lt;server_fqhn&gt;/api/taxii/1 </span></div>
+                        <ol class="tid-authentication-list font-size-12">
+                          <li>Basic Auth with username and password. You could also use <span class="font-italic">https://&lt;username&gt;:&lt;password&gt;@&lt;server_fqhn&gt;/api/taxii/1 </span></li>
+                          <li>Additionally user can use API Key authentication. For more details please refer <span class="font-italic"><a target="_blank" href="https://docs.fortinet.com/document/fortisoar/7.5.0/api-guide/797122/access-keys" title="Authentication API Guide">Authentication API Guide</a></span></li>
+                        </ol>
                       </div>
                       <div class="margin-top-lg">
                         <div class="muted font-size-14">Endpoints Available</div>

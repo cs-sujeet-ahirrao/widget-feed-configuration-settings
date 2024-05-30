@@ -1,12 +1,16 @@
+  /* Copyright start
+  MIT License
+  Copyright (c) 2024 Fortinet Inc
+  Copyright end */
     'use strict';
     (function () {
         angular
             .module('cybersponse')
-            .controller('feedConfigurationSettings110Ctrl', feedConfigurationSettings110Ctrl);
+            .controller('feedConfigurationSettings111Ctrl', feedConfigurationSettings111Ctrl);
 
-        feedConfigurationSettings110Ctrl.$inject = ['$scope', 'CommonUtils', '$resource', 'API', 'config', 'statusCodeService', 'toaster', '$rootScope', 'ModalService', 'clipboard'];
+        feedConfigurationSettings111Ctrl.$inject = ['$scope', 'CommonUtils', '$resource', 'API', 'config', 'statusCodeService', 'toaster', '$rootScope', 'ModalService', 'clipboard'];
 
-        function feedConfigurationSettings110Ctrl($scope, CommonUtils, $resource, API, config, statusCodeService, toaster, $rootScope, ModalService, clipboard) {
+        function feedConfigurationSettings111Ctrl($scope, CommonUtils, $resource, API, config, statusCodeService, toaster, $rootScope, ModalService, clipboard) {
           $scope.getFeedSettings = getFeedSettings;
           $scope.updateTaxiiServerStatus = updateTaxiiServerStatus;
           $scope.updateGenaralSettings = updateGenaralSettings;
@@ -16,7 +20,6 @@
           $scope.params = {};
           $scope.taxiiServerAddress = CommonUtils.getOrigin();
           $scope.copyDatasetLink = copyDatasetLink;
-
           function init() {
             $scope.tabsData = [
               {
