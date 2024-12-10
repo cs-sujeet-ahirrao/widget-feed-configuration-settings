@@ -12,7 +12,7 @@
   </div>
   <div data-ng-show="getKeyStoreRecord" class="row position-relative full-height">
     <form name="feedConfigurationSettingsForm" class="feed-configuration-container">
-      <div class="col-md-6 threat-feed-config-uib-accordion padding-top-30">
+      <div class="col-md-7 threat-feed-config-uib-accordion padding-top-30">
         <div class="font-size-25 muted-80 line-height-1 padding-bottom-md">Threat Feed Rules</div>
         <p class="font-Size-13 muted"><span>Configure threat feed rules on this page to manage threat
             intelligence from different sources.</span></p>
@@ -220,7 +220,6 @@
                       255 characters.</span>
                   </div>
                 </div>
-
                 <div
                   class="solid-border element-secondary-bgcolor padding-20 margin-top-md padding-top-md padding-bottom-md">
                   <label class="font-08em">
@@ -281,6 +280,26 @@
                     style="max-width: 700px;">
                   </div>
                 </div>
+                <div
+                  class="solid-border element-secondary-bgcolor padding-20 margin-top-md padding-top-md padding-bottom-md">
+                  <div class="checkbox">
+                    <label for="automaticBlockIOC" class="font-size-14">
+                      <input id="automaticBlockIOC" type="checkbox" name="automaticBlockIOC"
+                        data-ng-model="feedRules.unstructuredFeedsSupport.ingestFeedsFromEmail.automaticBlockIOCEnabled.enabled"
+                        data-ng-disabled="!feedRules.unstructuredFeedsSupport.enabled" data-cs-focus />&nbsp;Block
+                      Threat Feeds Automatically
+                    </label>
+                    <span
+                      data-uib-tooltip="Enabling this option automatically blocks threat feeds after ingestion. If disabled, feeds must be blocked manually."
+                      data-tooltip-append-to-body="true"><i class="margin-left-sm icon icon-information font-Size-13">
+                      </i></span>
+                  </div>
+                  <div class="margin-bottom-md margin-top-negative-10">
+                    <small class="font-light muted">Enabling this option will automatically block threat feeds
+                      immediately after they are ingested in the Threat Feeds module. If disabled, threat feeds will
+                      require manual blocking.</small>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="mertics-widget-border-bottom margin-top-lg"></div>
@@ -290,10 +309,9 @@
                   <input id="sendEmailNotifications" type="checkbox" name="sendEmailNotifications"
                     data-ng-model="feedRules.unstructuredFeedsSupport.sendEmailNotifications.enabled"
                     data-ng-disabled="!feedRules.unstructuredFeedsSupport.enabled" data-cs-focus>&nbsp;Threat Feed
-                  Ingestion &
-                  Block Notifications
+                  Ingestion Notifications
                   <span
-                    data-uib-tooltip="Enter the email addresses authorized to receive notifications for threat feed ingestion and block actions. You can specify multiple addresses, separated by commas (,)."
+                    data-uib-tooltip="Enter the email addresses authorized to receive notifications for threat feed ingestion. You can specify multiple addresses, separated by commas (,)."
                     data-tooltip-append-to-body="true"><i class="margin-left-sm icon icon-information font-Size-13">
                     </i></span>
                 </label>
@@ -303,9 +321,9 @@
                   class="solid-border element-secondary-bgcolor padding-20 margin-top-md padding-top-md padding-bottom-md">
                   <div class="line-height-1 margin-bottom-4 margin-top-negative-3">
                     <small class="font-light muted">Specify the email addresses that are authorized to receive
-                      notifications when unstructured threat feeds are ingested from email, and any identified threat
-                      feeds are automatically blocked on the firewall. The system will notify these addresses whenever a
-                      threat feed is successfully ingested and blocked.</br>You can enter multiple email addresses,
+                      notifications when unstructured threat feeds are ingested. The system will notify these addresses
+                      whenever a
+                      threat feed is successfully ingested.</br>You can enter multiple email addresses,
                       separated by commas (,), to ensure proper notification distribution.</small>
                   </div>
                   <label for="fromEmailAddress" class="control-label">Email Address</label>

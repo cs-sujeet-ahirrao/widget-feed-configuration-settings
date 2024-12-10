@@ -43,31 +43,31 @@
             <div class="pull-left width-15">
               <div class="halign-center"><input id="minute-schedule-crontab" name="minute-schedule-crontab" type="text"
                   class="form-control  halign-center input-sm" data-ng-model="scheduleConfig.crontab.minute"
-                  data-ng-change="updateCron()"></div>
+                  data-ng-change="updateCron(true)" /></div>
               <div class="halign-center"><label class="control-label muted">minute</label></div>
             </div>
             <div class="pull-left width-15">
               <div class="halign-center"><input id="hour-schedule-crontab" name="hour-schedule-crontab" type="text"
                   class="form-control halign-center input-sm" data-ng-model="scheduleConfig.crontab.hour"
-                  data-ng-change="updateCron()"></div>
+                  data-ng-change="updateCron(true)" /></div>
               <div class="halign-center"><label class="control-label muted">hour</label></div>
             </div>
             <div class="pull-left width-15">
               <div class="halign-center"><input id="dom-schedule-crontab" name="dom-schedule-crontab" type="text"
                   class="form-control halign-center input-sm" data-ng-model="scheduleConfig.crontab.day_of_month"
-                  data-ng-change="updateCron()"></div>
+                  data-ng-change="updateCron(true)" /></div>
               <div class="halign-center"><label class="control-label muted">day of month</label></div>
             </div>
             <div class="pull-left width-15">
               <div class=""><input id="moy-schedule-crontab" name="moy-schedule-crontab" type="text"
                   class="form-control halign-center input-sm" data-ng-model="scheduleConfig.crontab.month_of_year"
-                  data-ng-change="updateCron()"></div>
+                  data-ng-change="updateCron(true)" /></div>
               <div class="halign-center"><label class="control-label muted">month</label></div>
             </div>
             <div class="pull-left width-15">
               <div class="halign-center"><input id="doy-schedule-crontab" name="doy-schedule-crontab" type="text"
                   class="form-control halign-center input-sm" data-ng-model="scheduleConfig.crontab.day_of_week"
-                  data-ng-change="updateCron()"></div>
+                  data-ng-change="updateCron(true)" /></div>
               <div class="halign-center"><label class="control-label muted">day of week</label></div>
             </div>
           </div>
@@ -115,10 +115,10 @@
     </div>
     <div ng-form="scheduleForm" name="scheduleForm" class="margin-left-negative-15">
       <button id="widget-edit-save" data-ng-if="params.updating === false && allowEdit" class="btn btn-sm btn-primary"
-        data-ng-disabled="!scheduleForm.$dirty" data-ng-click="save(scheduleForm)">
+        data-ng-disabled="!scheduleForm.$dirty || params.isSaveDisabled" data-ng-click="save(scheduleForm)">
         <i class="icon icon-check margin-right-sm"></i>Save</button>
       <button data-ng-if="params.updating === true" type="button" class="btn btn-sm btn-primary"
-        ng-disabled="params.updating === true" id="saving-edit-schedules">
+        ng-disabled="params.updating === true || params.isSaveDisabled" id="saving-edit-schedules">
         <cs-spinner class="pull-left margin-top-xsm state-wait button-spinner margin-right-sm"
           data-show-background="true" data-no-margin="margin-0"></cs-spinner>Saving</button>
     </div>

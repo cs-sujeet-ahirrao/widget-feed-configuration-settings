@@ -52,6 +52,7 @@
 
       scope.params = {
         updating: false,
+        isSaveDisabled: false,
         action: 'Add',
         playbookList: null,
         defaultCronexpression: {
@@ -110,14 +111,17 @@
         }
       });
 
-      function updateCron() {
+      function updateCron(updatedCronSection) {
         var cronstrue = $window.cronstrue;
         scope.cronDescriber = '';
         if (scope.scheduleConfig.crontab.minute !== '' && scope.scheduleConfig.crontab.hour !== '' && scope.scheduleConfig.crontab.day_of_month !== '' && scope.scheduleConfig.crontab.month_of_year !== '' && scope.scheduleConfig.crontab.day_of_week !== '') {
           scope.cronDescriber = cronstrue.toString(scope.scheduleConfig.crontab.minute + ' ' + scope.scheduleConfig.crontab.hour + ' ' + scope.scheduleConfig.crontab.day_of_month + ' ' + scope.scheduleConfig.crontab.month_of_year + ' ' + scope.scheduleConfig.crontab.day_of_week);
         }
         scope.params.config.cronName = angular.copy(scope.cronDescriber);
-        scope.$emit('scheduleDetails', { 'status': true, 'scheduleId': scope.scheduleConfig.id, 'scheduleFrequency': scope.cronDescriber });
+        //scope.$emit('feedScheduleDetails', { 'status': true, 'scheduleDetails': scope.scheduleConfig, 'scheduleFrequency': scope.cronDescriber });
+        if (!scope.scheduleForm.$dirty && updatedCronSection) {
+          scope.scheduleForm.$setDirty();
+        }
       }
 
       function loadScheduleData() {
@@ -245,12 +249,20 @@
         scope.updateCron();
       };
 
+      scope.$watch('scheduleForm.$dirty', function(newVal) {
+        if (newVal) {
+          // Reset isSaveDisabled when the form is dirty (modified)
+          scope.params.isSaveDisabled = false;
+        }
+      });
+
       function save(scheduleForm) {
         if (scheduleForm.$invalid) {
           scheduleForm.$setTouched();
           scheduleForm.$focusOnFirstError();
           return;
         }
+        scope.params.isSaveDisabled = true;
         scope.params.updating = true;
         scope.scheduleConfig.enabled = true;
         scope.scheduleConfig.kwargs.wf_iri = "/api/3/workflows/"+ scope.jsonData.playbook_uuid;
@@ -276,10 +288,14 @@
         SchedulesService.saveSchedule(scheduleData).then(function (data) {
           scope.scheduleConfig.id = data.id;
           scope.status = true;
-          scope.$emit('scheduleDetails', { 'status': scope.status, 'scheduleId': scope.scheduleConfig.id, 'scheduleFrequency': scope.cronDescriber });
           scope.params.updating = false;
-          _isScheduleModified = true;
+          scope.params.isSaveDisabled = true; 
+          scope.$emit('feedScheduleDetails', { 'status': scope.status, 'scheduleDetails': scope.scheduleConfig, 'scheduleFrequency': scope.cronDescriber });
           scope.scheduleForm.$setPristine();
+          _isScheduleModified = true;
+        }, function (error) {
+          // In case of error, also enable the save button again
+          scope.params.isSaveDisabled = false;
         }
         );
       }
